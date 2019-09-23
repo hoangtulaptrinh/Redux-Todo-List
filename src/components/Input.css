@@ -1,0 +1,9 @@
+.InputList{
+    display: flex;
+}
+.InputList > input {
+    width: 80%;
+}
+.InputList > button {
+    flex: 1;
+}
