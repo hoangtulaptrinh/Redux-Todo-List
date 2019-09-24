@@ -6,7 +6,7 @@ import List from './components/List'
 function App() {
   return (
     <div className="App">
-      <Title>Todo-App Made by HoangTuLapTrinh</Title>
+      <Title>Todo-App</Title>
       <InputList />
       <List />
     </div>
