@@ -1,9 +1,16 @@
 .InputList{
-    display: flex;
+  display: flex;
 }
 .InputList > input {
-    width: 82%;
+  width: 82%;
 }
 .InputList > button {
-    flex: 1;
+  flex: 1;
+}
+.icon-add{
+  margin-left: 5px;
+}
+.btn-add{
+  display: flex !important;
+  align-items: center ;
 }

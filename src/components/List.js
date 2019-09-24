@@ -1,28 +1,28 @@
 import React,{ Component } from 'react'
-import { InputGroup,InputGroupAddon,InputGroupText,Input,Button } from 'reactstrap';
+import { InputGroup,InputGroupAddon,Input,Button } from 'reactstrap';
 import './List.css'
+
+import className from 'classnames'
 
 import * as actions from '../actions/index';
 import { connect } from 'react-redux';
-
+import { FaTrash , FaEdit , FaCheckSquare } from 'react-icons/fa';
 class List extends Component{
   constructor(props){
     super(props)
     this.delete = this.delete.bind(this)
     this.edit = this.edit.bind(this)
-    this.editInput = this.editInput.bind(this)
+    this.checkdone = this.checkdone.bind(this)
   }
 delete(event){
   this.props.DELETE_LIST(Number(event.target.value))
-  console.log(event.target.value)
 }
 edit(event){
-  var InputValue  = this.props.InputValue
-  this.props.EDIT_LIST(Number(event.target.value),InputValue)
-  console.log(event.target.value)
+  if(this.props.InputValue !== '')
+  this.props.EDIT_LIST(Number(event.target.value),this.props.InputValue)
 }
-editInput(event){
-  this.props.CHANGE_INPUT_VALUE(event.target.value)
+checkdone(event){
+  this.props.CHECK_DONE(Number(event.target.value))
 }
     render(){
         const {List} = this.props;
@@ -31,17 +31,17 @@ editInput(event){
         List.map((item,index) =>
         
     <InputGroup className='List-show'>
-        <InputGroupAddon addonType="prepend">
-          <InputGroupText>
-            <Input addon type="checkbox" aria-label="Checkbox for following text input" />
-          </InputGroupText>
-        </InputGroupAddon>
-        <Input
-        defaultValue = {item.name}
-        onChange = {this.editInput} />
-        <Button onClick={this.edit} value = {index} outline color="info">Edit</Button>
-        <Button onClick={this.delete} value = {index} outline color="danger">Delete</Button>
-      </InputGroup>
+      <InputGroupAddon addonType="prepend">
+        <Button className = 'btn' onClick={this.checkdone} value={index} outline color="primary"> Done <FaCheckSquare className='icon'/></Button>{' '}
+      </InputGroupAddon>
+
+      <Input className={className({'Show-Item': item.done === true})}
+        readOnly
+        value = {item.name}
+         /> 
+        <Button className = 'btn' onClick={this.edit} value = {index} outline color="info"> Edit <FaEdit className='icon'/></Button>{' '}
+        <Button className = 'btn' onClick={this.delete} value = {index} outline color="danger"> Delete <FaTrash className='icon'/></Button>{' '}
+    </InputGroup>
       
       )}
 </div>);
@@ -50,7 +50,7 @@ editInput(event){
 const mapStatetoProps = (state) => {
     return {
         List : state.List,
-        InputValue : state.InputValue
+        InputValue : state.InputValue,
     }
 }
 
@@ -58,7 +58,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     DELETE_LIST: (valueIndex) => dispatch(actions.DELETE_LIST({ valueIndex: valueIndex })),
     EDIT_LIST: (index,valueName) => dispatch(actions.EDIT_LIST({ index : index,valueName: valueName })),
-    CHANGE_INPUT_VALUE: (value) => dispatch(actions.CHANGE_INPUT_VALUE({ value: value }))
+    CHANGE_INPUT_VALUE: (value) => dispatch(actions.CHANGE_INPUT_VALUE({ value: value })),
+    CHECK_DONE: (checkDone) => dispatch(actions.CHECK_DONE({ checkDone: checkDone })),
   }
 }
 

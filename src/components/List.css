@@ -5,3 +5,15 @@
 .List > button {
     flex: 1;
 }
+.Show-Item{
+  text-decoration: line-through;
+  background-color: rgba(255, 0, 0, 0.9) !important;
+  color: white !important;
+}
+.btn{
+  display: flex !important;
+  align-items: center ;
+}
+.icon{
+  margin-left: 5px;
+}
