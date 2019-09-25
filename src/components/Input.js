@@ -14,8 +14,11 @@ class InputList extends Component {
     this.Change = this.Change.bind(this)
   }
   Add() {
-    if(this.props.InputValue !== '')
+    if(this.props.InputValue.length > 10)
     this.props.ADD_LIST(this.props.InputValue);
+    else{
+      alert('The Todo name needs at least 10 characters')
+    }
   }
   Change(event) {
     this.props.CHANGE_INPUT_VALUE(event.target.value);
@@ -34,8 +37,8 @@ const mapStatetoProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    ADD_LIST: (value) => dispatch(actions.ADD_LIST({ value: value })),
-    CHANGE_INPUT_VALUE: (value) => dispatch(actions.CHANGE_INPUT_VALUE({ value: value }))
+    ADD_LIST: (value) => dispatch(actions.addList({ value: value })),
+    CHANGE_INPUT_VALUE: (value) => dispatch(actions.changeInputValue({ value: value }))
   }
 }
 

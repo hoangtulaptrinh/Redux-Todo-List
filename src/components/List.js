@@ -18,8 +18,12 @@ delete(event){
   this.props.DELETE_LIST(Number(event.target.value))
 }
 edit(event){
-  if(this.props.InputValue !== '')
+  if(this.props.InputValue.length > 10)
+  {
   this.props.EDIT_LIST(Number(event.target.value),this.props.InputValue)
+  }
+  else
+  alert('Enter at least 10 characters to change')
 }
 checkdone(event){
   this.props.CHECK_DONE(Number(event.target.value))
@@ -56,10 +60,10 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    DELETE_LIST: (valueIndex) => dispatch(actions.DELETE_LIST({ valueIndex: valueIndex })),
-    EDIT_LIST: (index,valueName) => dispatch(actions.EDIT_LIST({ index : index,valueName: valueName })),
-    CHANGE_INPUT_VALUE: (value) => dispatch(actions.CHANGE_INPUT_VALUE({ value: value })),
-    CHECK_DONE: (checkDone) => dispatch(actions.CHECK_DONE({ checkDone: checkDone })),
+    DELETE_LIST: (valueIndex) => dispatch(actions.deleteList({ valueIndex: valueIndex })),
+    EDIT_LIST: (index,valueName) => dispatch(actions.editList({ index : index,valueName: valueName })),
+    CHANGE_INPUT_VALUE: (value) => dispatch(actions.changeInputValue({ value: value })),
+    CHECK_DONE: (checkDone) => dispatch(actions.checkDone({ checkDone: checkDone })),
   }
 }
 
