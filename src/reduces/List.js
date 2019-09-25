@@ -1,3 +1,5 @@
+import actionTypes from '../const/actionTypes';
+
 var initialState = [{
   name: 'Play The Witcher 3: Wild Hunt', done: false
 },
@@ -11,20 +13,20 @@ var initialState = [{
   name: 'Play League of Legends', done: false
 },
 {
-  name: 'Age of Empires', done: false
+  name: 'Play Age of Empires', done: false
 }
 ]
 
 var myReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_LIST':
+    case actionTypes.ADD_LIST:
       return [...state, { name: action.addList.value, done: false }];
-    case 'DELETE_LIST':
+    case actionTypes.DELETE_LIST:
       return [
         ...state.slice(0, action.deleteList.valueIndex),
         ...state.slice(action.deleteList.valueIndex + 1),
       ];
-    case 'EDIT_LIST':
+    case actionTypes.EDIT_LIST:
       return [
         ...state.slice(0, action.editList.index),
         {
@@ -33,7 +35,7 @@ var myReducer = (state = initialState, action) => {
         },
         ...state.slice(action.editList.index + 1),
       ];
-    case 'CHECK_DONE':
+    case actionTypes.CHECK_DONE:
       return [
         ...state.slice(0, action.checkDone.checkDone),
         {
