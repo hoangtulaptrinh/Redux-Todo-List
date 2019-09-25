@@ -2,9 +2,13 @@
   "name": "todo-list",
   "version": "0.1.0",
   "private": true,
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build",
+  "homepage": "http://hoangtulaptrinh.github.io/Todo-App/",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
+    "gh-pages": "^2.1.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-icons": "^3.7.0",
@@ -14,6 +18,8 @@
     "redux": "^4.0.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
