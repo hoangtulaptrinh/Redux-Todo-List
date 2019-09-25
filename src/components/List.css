@@ -11,9 +11,12 @@
   color: white !important;
 }
 .btn{
+  position: relative;
   display: flex !important;
   align-items: center ;
 }
 .icon{
+  position: relative;
+  z-index: -1;
   margin-left: 5px;
 }
